@@ -17,7 +17,7 @@ key: str = data["appKey"]
 app = FastAPI()
 
 
-@app.post("/path", response_model=model.GetPath.response)
+@app.post("/map/path", response_model=model.GetPath.response)
 async def get_path(p: model.GetPath.payload) -> JSONResponse:
     map_calc = map.MapCalculator(key)
 
@@ -34,20 +34,20 @@ async def get_path(p: model.GetPath.payload) -> JSONResponse:
     return JSONResponse(content=jsonable_encoder(path_time))
 
 
-@app.post("/min_time", response_model=model.GetMinimumTime.response)
+@app.post("/map/time", response_model=model.GetMinimumTime.response)
 async def get_minimum_time(p: model.GetMinimumTime.payload) -> JSONResponse:
     """User Location + Server Location(도착 위치) -> min time"""
     time = model.GetMinimumTime.response(time=10)
     return JSONResponse(content=jsonable_encoder(time))
 
 
-@app.post("/sign_up", response_model=model.SignUp.response)
-async def sign_up(user: model.SignUp.payload) -> JSONResponse:
+@app.post("/user/sign_up", response_model=model.SignUp.response)
+async def sign_up(p: model.SignUp.payload) -> JSONResponse:
     # db에 유저 정보 추가
     pass
 
 
-@app.post("/sign_in", response_model=model.SignIn.response)
+@app.post("/user/sign_in", response_model=model.SignIn.response)
 async def sign_in(p: model.SignIn.payload) -> JSONResponse:
     # 만약 db에 유저가 있다면
     # jwt 토큰 발급
@@ -56,13 +56,12 @@ async def sign_in(p: model.SignIn.payload) -> JSONResponse:
 
     # 다른 post jwt valid 확인하기
 
-
     # 앱에서는 jwt토큰이 있는 경우 자동으로 로그인을 시도한다
     # 실패하면 로그인 화면으로 이동
     pass
 
 
-@app.post("/sign_out", response_model=model.SignOut.response)
+@app.post("/user/sign_out", response_model=model.SignOut.response)
 async def sign_out() -> JSONResponse:
     # jwt 토큰 폭파
     pass
