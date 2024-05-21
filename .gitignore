@@ -1,2 +1,8 @@
-.idea
-/env
+/.idea
+/venv
+
+env.py
+
+/migrations
+myapi.db
+alembic.ini

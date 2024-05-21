@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 
 from domain.user import user_router
+from domain.map import map_router
 
 
 app = FastAPI()
@@ -20,7 +21,8 @@ app.add_middleware(
 )
 
 app.include_router(user_router.router)
+app.include_router(map_router.router)
 
-# if __name__ == "__main__":
-#     print("http://127.0.0.1:8000/docs")
-#     uvicorn.run(app, host="127.0.0.1", port=8000)
+if __name__ == "__main__":
+    print("http://127.0.0.1:8000/docs")
+    uvicorn.run(app, host="127.0.0.1", port=8000)
