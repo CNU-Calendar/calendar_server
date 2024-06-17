@@ -101,16 +101,16 @@ def get_path(map_path: MapPath) -> tuple[str, str]:
 
 
 def get_min_time(map_min_time: MapMinTime) -> str:
-    end_x = ...  # TODO get from database
-    end_y = ...
-    method = ...
+    # end_x = ...  # TODO get from database
+    # end_y = ...
+    # method = ...
 
     map_path = MapPath(
         start_x=map_min_time.start_x,
         start_y=map_min_time.start_y,
-        end_x=end_x,
-        end_y=end_y,
-        method=method)
+        end_x=map_min_time.end_x,
+        end_y=map_min_time.end_y,
+        method=map_min_time.method)
 
     if map_min_time.method in ("walk", "bus", "car"):
         _, min_time = get_path(map_path)
